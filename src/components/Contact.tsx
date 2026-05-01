@@ -63,6 +63,7 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="glass-panel p-8 sm:p-10"
+            data-robot-target="contact"
           >
             <div className="flex items-center gap-2 mb-6 text-[#00f5ff] font-mono text-sm">
               <Terminal size={16} />

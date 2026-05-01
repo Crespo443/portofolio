@@ -80,7 +80,7 @@ const Experience = () => {
                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: exp.color }}></div>
               </div>
 
-              <div className="retro-pixel-border p-6 sm:p-8 hover:bg-white/5 transition-colors group relative overflow-hidden">
+              <div className="retro-pixel-border p-6 sm:p-8 hover:bg-white/5 transition-colors group relative overflow-hidden" data-robot-target={index === 0 ? 'experience' : undefined}>
                 <div 
                   className="absolute top-0 left-0 w-1 h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ backgroundColor: exp.color, boxShadow: `0 0 15px ${exp.color}` }}

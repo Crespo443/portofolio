@@ -109,17 +109,17 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right Side: Profile Picture */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3, duration: 0.6, type: "spring" }}
           className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 flex-shrink-0 mt-10 lg:mt-0"
+          data-robot-target="home"
         >
           {/* Cyberpunk styled frame using the retro dotted border */}
           <div className="absolute inset-0 retro-pixel-border z-10 flex items-center justify-center bg-[#0f051c] group">
             <img 
-              src="crespoprofile.jpg" 
+              src="crespo.jpeg" 
               alt="Profile" 
               className="w-full h-full object-cover opacity-80 mix-blend-luminosity group-hover:mix-blend-normal group-hover:opacity-100 transition-all duration-500"
             />

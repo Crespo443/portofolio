@@ -51,6 +51,7 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="glass-panel p-8 relative overflow-hidden"
+            data-robot-target="about"
           >
             {/* Decorative circuit lines */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CiAgPGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiMwMGY1ZmYiLz4KPC9zdmc+')] opacity-20"></div>

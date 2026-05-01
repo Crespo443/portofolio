@@ -96,6 +96,7 @@ const Projects = () => {
               whileHover={{ y: -10 }}
               className="pixel-card p-8 sm:p-10 relative group transition-all duration-300 z-10 hover:z-20 focus-within:ring-2 focus-within:ring-current focus-within:ring-offset-4 focus-within:ring-offset-black"
               style={{ color: project.color }}
+              data-robot-target={index === 0 ? "projects" : undefined}
             >
               {/* Hover Glow Effect */}
               <div 

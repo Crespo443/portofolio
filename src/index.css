@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  --font-pixel: "Press Start 2P", monospace;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-cyber-purple: #1a0033;
+  --color-cyber-purple-light: #2a0050;
+  --color-neon-cyan: #00f5ff;
+  --color-neon-magenta: #ff00cc;
+  --color-neon-yellow: #ffd500;
+}
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-cyber-purple to-cyber-purple-light min-h-screen text-gray-200 font-mono antialiased overflow-x-hidden selection:bg-neon-magenta selection:text-white leading-relaxed;
+  }
+
+  /* Make scrollbar styling cool */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #1a0033;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #ff00cc;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00f5ff;
+  }
+}
+
+@layer utilities {
+  .text-glow-cyan {
+    text-shadow: 0 0 3px var(--color-neon-cyan), 0 0 8px rgba(0, 245, 255, 0.6);
+  }
+  .text-glow-magenta {
+    text-shadow: 0 0 3px var(--color-neon-magenta), 0 0 8px rgba(255, 0, 204, 0.6);
+  }
+  .box-glow-cyan {
+    box-shadow: 0 0 5px var(--color-neon-cyan), 0 0 20px rgba(0, 245, 255, 0.3);
+  }
+  .box-glow-magenta {
+    box-shadow: 0 0 5px var(--color-neon-magenta), 0 0 20px rgba(255, 0, 204, 0.3);
+  }
+  
+  .glass-panel {
+    @apply bg-[#2a0050]/40 backdrop-blur-md border border-white/10 rounded-xl;
+  }
+
+  .cyber-grid {
+    background-size: 50px 50px;
+    background-image: 
+      linear-gradient(to right, rgba(0, 245, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 245, 255, 0.05) 1px, transparent 1px);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  }
+
+  .pixel-card {
+    background-color: #0f051c; /* Deep purple/black inner background */
+    margin: 2px;
+    box-shadow: 
+      -2px 0 0 0 #3f187d,
+      2px 0 0 0 #3f187d,
+      0 -2px 0 0 #3f187d,
+      0 2px 0 0 #3f187d,
+      0 10px 20px -5px rgba(37, 16, 74, 0.8);
+    /* Disable default border/rounded corners */
+    border: none;
+    border-radius: 0;
+  }
+
+  /* Retro dotted border using 5 layers of dots with gaps */
+  .retro-pixel-border {
+    --pixel-size: 2px; /* Size of one single dot */
+    --border-layers: 5; /* 5 layers total (3 dots + 2 gaps) */
+    --bw: calc(var(--pixel-size) * var(--border-layers));
+    
+    position: relative;
+    border: var(--bw) solid transparent;
+    
+    /* Layer 1: Solid dark inside (padding-box) */
+    /* Layer 2: Separated dots pattern (border-box) */
+    background-image: 
+      linear-gradient(#0f051c, #0f051c),
+      conic-gradient(
+        at var(--pixel-size) var(--pixel-size), 
+        transparent 75%, 
+        #a855f7 75%
+      );
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    /* Grid size is exactly twice the pixel size to create the gap */
+    background-size: auto, calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 2);
+    
+    background-color: #0f051c; /* Fills the transparent gaps */
+    
+    /* Cut the corners to give the pixelated 8-bit rounded look */
+    clip-path: polygon(
+      calc(var(--pixel-size) * 3) 0, 
+      calc(100% - calc(var(--pixel-size) * 3)) 0, 
+      100% calc(var(--pixel-size) * 3), 
+      100% calc(100% - calc(var(--pixel-size) * 3)), 
+      calc(100% - calc(var(--pixel-size) * 3)) 100%, 
+      calc(var(--pixel-size) * 3) 100%, 
+      0 calc(100% - calc(var(--pixel-size) * 3)), 
+      0 calc(var(--pixel-size) * 3)
+    );
+  }
+}

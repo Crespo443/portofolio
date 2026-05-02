@@ -1,25 +1,41 @@
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Projects from './components/Projects';
-import Experience from './components/Experience';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import RobotCompanion from './components/RobotCompanion';
+import { lazy, Suspense } from "react";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+
+const About = lazy(() => import("./components/About"));
+const Projects = lazy(() => import("./components/Projects"));
+const Experience = lazy(() => import("./components/Experience"));
+const Contact = lazy(() => import("./components/Contact"));
+const Footer = lazy(() => import("./components/Footer"));
+const RobotCompanion = lazy(() => import("./components/RobotCompanion"));
 
 function App() {
   return (
-    <div className="bg-[#110524] min-h-screen text-white font-mono selection:bg-[#ff00cc] selection:text-white relative">
+    <div className="bg-[#110524] min-h-screen text-white font-mono selection:bg-neon-magenta selection:text-white relative overflow-x-hidden">
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Experience />
-        <Projects />
-        <Contact />
+        <Suspense fallback={<div className="h-20" />}>
+          <About />
+        </Suspense>
+        <Suspense fallback={<div className="h-20" />}>
+          <Experience />
+        </Suspense>
+        <Suspense fallback={<div className="h-20" />}>
+          <Projects />
+        </Suspense>
+        <Suspense fallback={<div className="h-20" />}>
+          <Contact />
+        </Suspense>
       </main>
-      <RobotCompanion />
-      <Footer />
+      <div className="hidden lg:block">
+        <Suspense fallback={null}>
+          <RobotCompanion />
+        </Suspense>
+      </div>
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }

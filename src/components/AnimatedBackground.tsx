@@ -3,9 +3,20 @@ import { useEffect, useRef } from 'react';
 const AnimatedBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  const isInView = useRef(false);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isInView.current = entry.isIntersecting;
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(canvas);
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -131,68 +142,70 @@ const AnimatedBackground = () => {
     };
 
     const animate = () => {
-      ctx.fillStyle = bgColor;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      if (isInView.current) {
+        ctx.fillStyle = bgColor;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      time++;
+        time++;
 
-      blobs.forEach(blob => {
-        const offset = Math.sin(time * blob.speed) * 2;
-        drawPixelCircle(Math.floor(blob.x), Math.floor(blob.y + offset), blob.r, blob.color);
-      });
+        blobs.forEach(blob => {
+          const offset = Math.sin(time * blob.speed) * 2;
+          drawPixelCircle(Math.floor(blob.x), Math.floor(blob.y + offset), blob.r, blob.color);
+        });
 
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          const type = grid[i][j];
-          if (type === 0) continue;
+        for (let i = 0; i < cols; i++) {
+          for (let j = 0; j < rows; j++) {
+            const type = grid[i][j];
+            if (type === 0) continue;
 
-          const x = i * gridSize;
-          const y = j * gridSize;
-          const cx = x + gridSize / 2;
-          const cy = y + gridSize / 2;
+            const x = i * gridSize;
+            const y = j * gridSize;
+            const cx = x + gridSize / 2;
+            const cy = y + gridSize / 2;
 
-          const isHighlight = Math.sin(i * 0.5 + j * 0.5 + time * 0.02) > 0.8;
-          const isSuperHighlight = Math.sin(i * 1.2 - j * 0.8 - time * 0.05) > 0.95;
-          
-          if (isSuperHighlight) {
-            ctx.fillStyle = gridColor2;
-          } else if (isHighlight) {
-            ctx.fillStyle = '#2e145c';
-          } else {
-            ctx.fillStyle = gridColor1;
-          }
+            const isHighlight = Math.sin(i * 0.5 + j * 0.5 + time * 0.02) > 0.8;
+            const isSuperHighlight = Math.sin(i * 1.2 - j * 0.8 - time * 0.05) > 0.95;
+            
+            if (isSuperHighlight) {
+              ctx.fillStyle = gridColor2;
+            } else if (isHighlight) {
+              ctx.fillStyle = '#2e145c';
+            } else {
+              ctx.fillStyle = gridColor1;
+            }
 
-          const s = 2; // Decreased grid pixel size
+            const s = 2; // Decreased grid pixel size
 
-          if (type === 1) {
-            ctx.fillRect(cx - s/2, cy - s/2, s, s);
-          } else if (type === 2) {
-            ctx.fillRect(cx - s/2, cy - s*1.5, s, s*3);
-            ctx.fillRect(cx - s*1.5, cy - s/2, s*3, s);
-          } else if (type === 3) {
-            ctx.fillRect(cx - s*1.5, cy - s/2, s*3, s);
-          } else if (type === 4) {
-            ctx.fillRect(cx - s/2, cy - s*1.5, s, s*3);
-          } else if (type === 5) {
-            ctx.fillRect(cx - s, cy - s, s*2, s);
-            ctx.fillRect(cx - s, cy + s, s*2, s);
-            ctx.fillRect(cx - s, cy - s, s, s*3);
-            ctx.fillRect(cx + s, cy - s, s, s*3);
+            if (type === 1) {
+              ctx.fillRect(cx - s/2, cy - s/2, s, s);
+            } else if (type === 2) {
+              ctx.fillRect(cx - s/2, cy - s*1.5, s, s*3);
+              ctx.fillRect(cx - s*1.5, cy - s/2, s*3, s);
+            } else if (type === 3) {
+              ctx.fillRect(cx - s*1.5, cy - s/2, s*3, s);
+            } else if (type === 4) {
+              ctx.fillRect(cx - s/2, cy - s*1.5, s, s*3);
+            } else if (type === 5) {
+              ctx.fillRect(cx - s, cy - s, s*2, s);
+              ctx.fillRect(cx - s, cy + s, s*2, s);
+              ctx.fillRect(cx - s, cy - s, s, s*3);
+              ctx.fillRect(cx + s, cy - s, s, s*3);
+            }
           }
         }
+
+        elements.forEach(el => {
+          el.x += el.vx;
+          el.y += el.vy;
+
+          if (el.x < -5) el.x = cols + 5;
+          if (el.x > cols + 5) el.x = -5;
+          if (el.y < -5) el.y = rows + 5;
+          if (el.y > rows + 5) el.y = -5;
+
+          drawElement(el);
+        });
       }
-
-      elements.forEach(el => {
-        el.x += el.vx;
-        el.y += el.vy;
-
-        if (el.x < -5) el.x = cols + 5;
-        if (el.x > cols + 5) el.x = -5;
-        if (el.y < -5) el.y = rows + 5;
-        if (el.y > rows + 5) el.y = -5;
-
-        drawElement(el);
-      });
 
       animationFrameId = requestAnimationFrame(animate);
     };
@@ -204,6 +217,7 @@ const AnimatedBackground = () => {
     return () => {
       window.removeEventListener('resize', resize);
       cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
     };
   }, []);
 

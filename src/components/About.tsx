@@ -61,7 +61,7 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-12 px-16"
+          className="mb-12 px-4 sm:px-16"
         >
           <h2 className="font-['Press_Start_2P'] text-xl md:text-3xl text-white mb-3">
             <span className="text-neon-cyan">&gt;</span> ABOUT_ME
@@ -69,7 +69,7 @@ const About = () => {
           <div className="w-24 h-1 bg-linear-to-r from-neon-cyan to-neon-magenta box-glow-cyan"></div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center px-4 sm:px-16">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}

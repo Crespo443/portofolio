@@ -34,7 +34,7 @@ const Navbar = () => {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-2 lg:ml-12 translate-x-4"
+            className="flex items-center gap-2 lg:ml-12 lg:translate-x-4"
           >
             <Terminal className="text-neon-cyan w-6 h-6" />
             <a

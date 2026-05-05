@@ -105,7 +105,7 @@ const Projects = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 px-20"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 px-4 sm:px-10 lg:px-20"
         >
           {projects.map((project, index) => (
             <div key={project.id} className="relative">

@@ -59,17 +59,18 @@ const Hero = () => {
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse lg:flex-row items-center justify-between gap-8 lg:gap-12 w-full">
         {/* Left Side: Text Content */}
-        <div className="flex-1 w-full flex flex-col items-center lg:items-start text-center lg:text-left lg:ml-12 translate-x-4">
+        <div className="flex-1 w-full flex flex-col items-center lg:items-start text-center lg:text-left lg:ml-12 lg:translate-x-4">
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-6">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-neon-cyan/30 bg-neon-cyan/10 text-[#00ff9d] font-mono text-sm backdrop-blur-sm shadow-[0_0_10px_rgba(0,255,157,0.3)] max-w-full"
+              className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-neon-cyan/30 bg-neon-cyan/10 text-[#00ff9d] font-mono text-xs sm:text-sm backdrop-blur-sm shadow-[0_0_10px_rgba(0,255,157,0.3)] max-w-full"
               data-robot-target="home"
             >
-              <MapPin size={16} />
-              <span>Sikka, East Nusa Tenggara, Indonesia</span>
+              <MapPin size={16} className="shrink-0" />
+              <span className="hidden sm:inline">Sikka, East Nusa Tenggara, Indonesia</span>
+              <span className="sm:hidden">Sikka, NTT, ID</span>
             </motion.div>
           </div>
 
@@ -96,21 +97,21 @@ const Hero = () => {
           >
             <a
               href="#projects"
-              className="group relative px-6 py-3 bg-neon-cyan/10 border border-neon-cyan text-neon-cyan font-mono font-bold uppercase tracking-wider overflow-hidden hover:bg-neon-cyan/20 transition-colors box-glow-cyan"
+              className="group relative px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-base bg-neon-cyan/10 border border-neon-cyan text-neon-cyan font-mono font-bold uppercase tracking-wider overflow-hidden hover:bg-neon-cyan/20 transition-colors box-glow-cyan"
             >
               <div className="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-neon-cyan/30 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
               <span className="relative flex items-center justify-center gap-2">
                 View Projects{" "}
-                <ChevronRight className="group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </span>
             </a>
 
             <a
               href="#contact"
-              className="group px-6 py-3 border border-neon-magenta text-neon-magenta font-mono font-bold uppercase tracking-wider hover:bg-neon-magenta/10 transition-colors box-glow-magenta flex items-center justify-center gap-2"
+              className="group px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-base border border-neon-magenta text-neon-magenta font-mono font-bold uppercase tracking-wider hover:bg-neon-magenta/10 transition-colors box-glow-magenta flex items-center justify-center gap-2"
             >
               Contact Me{" "}
-              <Terminal className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+              <Terminal className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-12 transition-transform" />
             </a>
           </motion.div>
         </div>
@@ -119,7 +120,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3, duration: 0.6, type: "spring" }}
-          className="relative w-full max-w-48 sm:max-w-56 md:max-w-64 lg:max-w-72 xl:max-w-80 aspect-square flex-1 mt-8 lg:mt-0 mx-auto lg:mx-0 lg:mr-20 -translate-x-4 group"
+          className="relative w-full max-w-40 sm:max-w-48 md:max-w-64 lg:max-w-72 xl:max-w-80 aspect-square flex-1 mt-8 lg:mt-0 mx-auto lg:mx-0 lg:mr-20 lg:-translate-x-4 group"
         >
           {/* Smooth Neon Flow Border */}
           <div className="absolute inset-0 neon-flow-frame z-10">

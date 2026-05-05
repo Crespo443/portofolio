@@ -42,6 +42,9 @@ const LinkedinIcon = ({ size = 24, className = "" }) => (
   </svg>
 );
 
+// ⚠️ Replace with your Web3Forms access key from https://web3forms.com
+const WEB3FORMS_ACCESS_KEY = "b90770bd-b981-40db-85b6-ae021284604c";
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -49,16 +52,52 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
+    setStatus(null);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Portfolio Contact: ${formData.name}`,
+          from_name: "Portfolio Contact Form",
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus({
+          type: "success",
+          message: "Message transmitted to mainframe successfully.",
+        });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setStatus({
+          type: "error",
+          message: "Transmission failed. Please try again.",
+        });
+      }
+    } catch {
+      setStatus({
+        type: "error",
+        message: "Network error. Check your connection and retry.",
+      });
+    } finally {
       setIsSubmitting(false);
-      setFormData({ name: "", email: "", message: "" });
-      alert("Message transmitted to mainframe successfully.");
-    }, 1500);
+    }
   };
 
   const handleChange = (
@@ -167,6 +206,13 @@ const Contact = () => {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot field for spam protection */}
+                <input
+                  type="checkbox"
+                  name="botcheck"
+                  className="hidden"
+                  style={{ display: "none" }}
+                />
                 <div>
                   <label
                     htmlFor="name"
@@ -238,6 +284,20 @@ const Contact = () => {
                     </>
                   )}
                 </button>
+
+                {status && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className={`p-3 rounded font-mono text-sm text-center border ${
+                      status.type === "success"
+                        ? "border-neon-cyan text-neon-cyan bg-neon-cyan/5"
+                        : "border-red-500 text-red-400 bg-red-500/5"
+                    }`}
+                  >
+                    {status.type === "success" ? "✓" : "✗"} {status.message}
+                  </motion.div>
+                )}
               </form>
             </motion.div>
           </div>

@@ -42,8 +42,8 @@ const LinkedinIcon = ({ size = 24, className = "" }) => (
   </svg>
 );
 
-// ⚠️ Replace with your Web3Forms access key from https://web3forms.com
-const WEB3FORMS_ACCESS_KEY = "b90770bd-b981-40db-85b6-ae021284604c";
+// Access key is now loaded from environment variables (.env)
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
 const Contact = () => {
   const [formData, setFormData] = useState({

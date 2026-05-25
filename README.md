@@ -1,73 +1,55 @@
-# React + TypeScript + Vite
+# Aprilino Crespo - Retro-Cyberpunk Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Portfolio Preview Placeholder](https://via.placeholder.com/1200x600/110524/00ffff?text=Add+Main+Screenshot+Here)
+*(Replace the above placeholder with an awesome screenshot of your portfolio!)*
 
-Currently, two official plugins are available:
+## 🌐 Overview
+Welcome to my retro-futuristic, cyberpunk-themed personal portfolio! This project was built to showcase my skills, projects, and professional experience. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Key Features
+- Neon glowing borders, dark themes, and glitch effects for a premium retro-futuristic feel.
+- Try to catch the cat roaming the site! (custom chroma-keyed video modal).
+- A responsive retro sidekick that reacts to your interactions on the page.
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Technology Stack
+- React + TypeScript
+- Tailwind CSS 
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/portfolio.git
+   ```
+2. Navigate into the directory:
+   ```bash
+   cd portfolio
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📸 Gallery
+*(Replace the placeholder links below with your actual project screenshots)*
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+![Hero Section Preview](https://via.placeholder.com/800x400/110524/ff00ff?text=Add+Hero+Section+Screenshot)
+*The interactive landing hero section.*
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+![Easter Egg Preview](https://via.placeholder.com/800x400/110524/00ffff?text=Add+CyberCat+Screenshot)
+*The interactive CyberCat easter egg in action.*
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📬 Contact
+Let's connect! You can find me on:
+- [LinkedIn](https://linkedin.com/in/yourprofile)
+- [GitHub](https://github.com/yourusername)
+- Email: your.email@example.com

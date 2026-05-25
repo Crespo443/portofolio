@@ -126,7 +126,7 @@ const Hero = () => {
           <div className="absolute inset-0 neon-flow-frame z-10">
             <div className="relative w-full h-full overflow-hidden glitch-image">
               <img
-                src="crespo.jpeg"
+                src="tai.png"
                 alt="Profile"
                 loading="eager"
                 className="w-full h-full object-cover opacity-80 mix-blend-luminosity group-hover:mix-blend-normal group-hover:opacity-100 transition-all duration-500"
